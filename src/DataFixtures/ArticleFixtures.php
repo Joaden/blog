@@ -2,11 +2,12 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\Article;
+use App\Entity\Comment;
+use App\Entity\Category;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
-use App\Entity\Article;
-use App\Entity\Category;
-use App\Entity\Comment;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 class ArticleFixtures extends Fixture
 {

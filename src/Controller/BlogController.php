@@ -2,15 +2,22 @@
 
 namespace App\Controller;
 
+use Symfony\Component\HttpFoundation\Request;
+use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Entity\Article;
-use Doctrine\Common\Persistence\ObjectManager;
-use App\Repository\ArticleRepository;
-use App\Form\ArticleType;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use App\Entity\Upload;
+use App\Form\UploadType;
+
+
+use App\Repository\ArticleRepository;
+use App\Entity\Article;
+use App\Entity\Comment;
+use App\Form\ArticleType;
+use App\Form\CommentType;
+use App\Repository\UserRepository;
 
 class BlogController extends AbstractController
 {
@@ -33,6 +40,8 @@ class BlogController extends AbstractController
             'articles' => $articles
             
         ]);
+
+        
 //        dump($articles); die;
 
     }
@@ -40,13 +49,39 @@ class BlogController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function home()
+    public function home(Request $request)
+
     {
-        return $this->render('blog/home.html.twig', [
+        // return $this->render('blog/home.html.twig', [
+        //     'title' => 'Blog CSL Training',
+        //     'age' => '30',
+        //     'browser' => 'nameBrowser'
+        // ]);
+       
+        $upload = new Upload();
+        $form = $this->createForm(UploadType::class, $upload);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid())
+        {
+            $file = $upload->getName();
+            
+            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+
+            $file->move($this->getParameter('upload_directory'), $fileName);
+
+            $upload->setName($fileName);
+
+            return $this->redirectToRoute('home');
+        }
+
+        return $this->render('blog/home.html.twig', array(
+            'form' => $form->createView(),
             'title' => 'Blog CSL Training',
             'age' => '30',
             'browser' => 'nameBrowser'
-        ]);
+        ));
+    
     }
 
     /**
@@ -110,7 +145,7 @@ class BlogController extends AbstractController
     /**
      * @Route("/blog/{id}", name="blog_show")
      */
-    public function show(Article $article)
+    public function show(Article $article, Request $request, ObjectManager $manager)
     {
         //public function show(ArticleRepository $repo, $id){}
         ///blog/article/{id} route parametre avec id et repo de Article
@@ -118,9 +153,26 @@ class BlogController extends AbstractController
 
         // trouve les articles avec leur id
         //$article = $repo->find($id);
+        $comment = new Comment();
+
+        $form = $this->createForm(CommentType::class, $comment);
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $comment->setCreatedAt(new \DateTime())
+                    ->setArticle($article);
+
+            $manager->persist($comment);
+            $manager->flush();
+
+            return $this->redirectToRoute('blog_show', ['id' => $article->getId()]);
+        }
 
         return $this->render('blog/show.html.twig', [
-            'article' => $article
+            'article' => $article,
+            'commentForm'=> $form->createView()
         ]);
     }
 
@@ -134,5 +186,17 @@ class BlogController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/account", name="account")
+     * 
+     */
+    public function account(UserRepository $repo)
+    {
+        $user = $repo->findAll();
+
+        return $this->render('/account.html.twig', [
+            'users' => $user
+        ]);
+    }
 
 }

@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Account{% endblock %}
+
+{% block body %}
+<h1>Vos coordonnées : </h1>
+
+    <article>
+            <h2>{{ user.username }}</h2>
+            <div class="content">
+        <div>{{ user.email }}</div>
+        <div>{{ user.roles }}</div>
+            </div>
+    </article>
+
+    <section id="favoris">
+        
+    </section>
+{% endblock %}

@@ -23,23 +23,34 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{path('blog_create')}}">Créer un article</a>
             </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    S'inscrire
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                </div>
+            {% if not app.user %}
+            <li class="nav-item">
+                <a class="nav-link" href="{{ path('security_registration') }}">S'inscrire</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{path('security_login')}}">Se connecter</a>
+            </li>
+            {% else %}
+            
+            <li class="nav-item">
+                <a class="nav-link" href="{{path('security_logout')}}">Se déconnecter</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{path('account')}}">Mon compte</a>
+            </li>
+            {% endif %}
         </ul>
     </div>
     </nav>
+    {% if not app.user %}
     <div class="container">
         {% block body %}{% endblock %}
-
     </div>
+    {% else %}
+    <div class="container">
+        <h1>Page ADMIN!</h1>
+    </div>
+    {% endif %}
         {% block javascripts %}{% endblock %}
     </body>
 </html>
