@@ -14,19 +14,23 @@ class ArticleFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $faker = \Faker\Factory::create('fr_FR');
+
         //Créer 3 categories fakées
+        // 
         // pour chaque categories je donne les infos, et article puis commentaire
+        //
         for($i = 1;$i <= 3; $i++) {
             $category = new Category();
             $category->setTitle($faker->sentence())
                      ->setDescription($faker->paragraph());
-                     
+              // prépare  a faire persister lobjet     
             $manager->persist($category);
 
             // Créer en 4 et 6 articles
             for($j = 1; $j <= mt_rand(4, 6); $j++){
                 $article = new Article();
 
+                // Attention content attend du string!!!
                 $content = '<p>' . join($faker->paragraphs(5), '</p><p>') . '</p>';
 
                 $article->setTitle($faker->sentence())
@@ -34,7 +38,8 @@ class ArticleFixtures extends Fixture
                         ->setImage($faker->imageUrl())
                         ->setCreatedAt($faker->dateTimeBetween('-6 months'))
                         ->setCategory($category);
-
+                        //jelui donne une categorie créé au prealable plus haut
+                //on demande au manager prépare a faire persister lobjet
                 $manager->persist($article);
 
                 for($k = 1; $k <= mt_rand(4, 10); $k++) {
@@ -51,7 +56,7 @@ class ArticleFixtures extends Fixture
                             ->setContent($content)
                             ->setCreateAtd($faker->dateTimeBetween('-' . $days . 'days'))
                             ->setArticle($article);
-
+                    // prépare a faire persister le commentaire
                     $manager->persist($comment);
 
                 }
@@ -69,6 +74,8 @@ class ArticleFixtures extends Fixture
                     // Propriété de type DateTime donc Objet Datetime, antislash car namespace
             $manager->persist($article);
         } */
+
+        // balance les instructions dans la base de données
         $manager->flush();
     }
 }

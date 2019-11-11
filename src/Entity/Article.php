@@ -21,13 +21,13 @@ class Article
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Assert\Length(min=10, max=150, minMessage="votre titre est trop court !")
+     * @Assert\Length(min=10, max=50, minMessage="votre titre est trop court !")
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
-     * @Assert\Length(min=10)
+     * @Assert\Length(min=10, max=350)
      */
     private $content;
 

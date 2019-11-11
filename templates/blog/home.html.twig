@@ -1,10 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Home{% endblock title %}
+{% block title %}Home Blog Denis{% endblock title %}
 
 {% block body %}
+<?php
+require '/src/templates/testmail.php';
+?>
 
-<h1>{{ title }}</h1>
+<h1>Bienvenue dans mon Blog Symfony</h1>
 
 {% if age > 18 %}
     <p>Tu es majeur</p>
@@ -13,11 +16,10 @@
 {% endif %}
 
 <section>
-    {{ form(form) }}
 </section>
 
-{{ browser }}
 
+<h2>Blog sur mes projets et forum de discussions</h2>
 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cum perspiciatis eveniet dolore voluptatum consectetur sint, dolor debitis non nulla temporibus. Architecto minus pariatur illum rerum tempora odio, distinctio animi id. efefefzrgrgv</p>
 
 {% endblock %}

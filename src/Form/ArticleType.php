@@ -8,6 +8,8 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Validator\Constraints\DateTime;
+
 
 class ArticleType extends AbstractType
 {
@@ -21,7 +23,7 @@ class ArticleType extends AbstractType
             ])
             ->add('content')
             ->add('image')
-            //->add('createdAt')
+            //->add('created_at')
         ;
     }
 

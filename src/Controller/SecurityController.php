@@ -46,7 +46,7 @@ class SecurityController extends AbstractController
      */
     public function adminRegistration(Request $request, ObjectManager $manager, UserPasswordEncoderInterface $encoder)
     {
-        $user = new Admin();
+        $admin = new Admin();
 
         $form = $this->createForm(AdminRegistrationType::class, $admin);
 
