@@ -212,7 +212,7 @@ class BlogController extends AbstractController
      * @Route("/about", name="about")
      * @return Response
      */
-    public function about(): Response
+    public function about()
     {
         return $this->render('pages/about.html.twig');
     }
@@ -221,7 +221,7 @@ class BlogController extends AbstractController
      * @Route("/infos", name="infos")
      * @return Response
      */
-    public function infos(): Response
+    public function infos()
     {
         return $this->render('pages/infos.html.twig');
       //return new Response('infos');
@@ -231,7 +231,7 @@ class BlogController extends AbstractController
      * @Route("/contact", name="contact")
      * @return Response
      */
-    public function contact(): Response
+    public function contact()
     {
         return $this->render('pages/contact.html.twig');
       //return new Response('contact');
@@ -241,7 +241,7 @@ class BlogController extends AbstractController
      * @Route("/faq", name="faq")
      * @return Response
      */
-    public function faq(): Response
+    public function faq()
     {
         return $this->render('pages/faq.html.twig');
       //return new Response('faq');
@@ -251,7 +251,7 @@ class BlogController extends AbstractController
      * @Route("/privacy", name="privacy")
      * @return Response
      */
-    public function privacy(): Response
+    public function privacy()
     {
         return $this->render('pages/privacy.html.twig');
       //return new Response('privacy');
@@ -261,7 +261,7 @@ class BlogController extends AbstractController
      * @Route("/terms", name="terms")
      * @return Response
      */
-    public function terms(): Response
+    public function terms()
     {
         return $this->render('pages/terms.html.twig');
       //return new Response('terms');
