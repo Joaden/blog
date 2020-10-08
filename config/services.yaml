@@ -6,7 +6,46 @@
 parameters:
     locale: 'en'
     upload_directory: '%kernel.project_dir%/public/uploads'
-
+#    app.path.imageProfile: /uploads/images/usersProfile
+#    database_host: 127.0.0.1
+#    database_port: null
+#    database_name: daos_front
+#    database_user: root
+#    database_password: null
+    descriptor: ''
+#    mailer_transport: smtp
+#    mailer_host: 127.0.0.1
+#    mailer_user: null
+#    mailer_password: null
+    secret: 260189210487180517040220
+    link_site: 'http://daos-cnt.com'
+    link_site_short: daos-cnt.com
+    link_landing: 'http://daos-cnt.com/lien'
+    name_repo: Daos
+    name_site: daos-cnt.com
+    mail_contact: 'dao.cnt@outlook.fr'
+    mail_boss: 'dao.cnt@outlook.fr'
+    tel_contact: '0646076660'
+    societe: 'DAOS'
+    societe_street: '5 Rue Julie Victoire Daubié'
+    societe_city: 'Limeil-Brevannes'
+    societe_cp: '94450'
+    societe_country: 'France'
+    siren: ''
+    facebook: ''
+    twitter: ''
+    instagram: ''
+    keyPsp: ''
+    keyPaid:
+    keyBilling:
+    pspRetry: ''
+    urlBilling: daos-billing.com
+    nameSiteConfig: daos_
+    envTest: 1
+    keyLogistic: ''
+    urlLogistic: ''
+    dateCreate: '2020-03-16'
+    countryDefault: 1
 services:
     # default configuration for services in *this* file
     _defaults:
@@ -24,6 +63,10 @@ services:
     App\Controller\:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
-
+#
+#    App\Controller\HomeController:
+#        tags: ['controller.service_arguments']
+#        arguments:
+#            $twig: '@twig'
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

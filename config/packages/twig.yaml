@@ -3,3 +3,26 @@ twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
     form_themes: ['bootstrap_4_layout.html.twig']
+    globals:
+            link_site: "%link_site%"
+            link_site_short: "%link_site_short%"
+            link_media: "%link_site%/uploads"
+            link_landing: "%link_landing%"
+            mail_contact: "%mail_contact%"
+            tel_contact: "%tel_contact%"
+            societe_street: "%societe_street%"
+            societe_cp: "%societe_cp%"
+            societe_country: "%societe_country%"
+            societe_city: "%societe_city%"
+            societe: "%societe%"
+            siren: "%siren%"
+            name_site: "%name_site%"
+            facebook: "%facebook%"
+            twitter: "%twitter%"
+            instagram: "%instagram%"
+            name_repo: "%name_repo%"
+            envTest: "%envTest%"
+            locale: "%locale%"
+            nameSiteConfig: "%nameSiteConfig%"
+            descriptor: "%descriptor%"
+            locales: '%kernel.debug%'

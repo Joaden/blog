@@ -1,40 +1,249 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Index{% endblock %}
+{% block title %}IndexBlog{% endblock %}
 
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ ('css/app.css') }}">
+{% endblock %}
 {% block body %}
 <style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper { margin: 1em auto; max-width: 600px; width: 75%; font: 12px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
 
+    <h3>Hello {{ controller_name }}! ✅</h3>
     This friendly message is coming from:
     <ul>
         <li>Your controller at <code><a href="{{ 'C:/xampp/htdocs/BlogStudio/src/Controller/BlogController.php'|file_link(0) }}">src/Controller/BlogController.php</a></code></li>
         <li>Your template at <code><a href="{{ 'C:/xampp/htdocs/BlogStudio/templates/blog/index.html.twig'|file_link(0) }}">templates/blog/index.html.twig</a></code></li>
     </ul>
+
+
 </div>
-<section>
-{{ form(form) }}
+    <div class="jumbotron text center">
+        <!-- <div class="jumbotronTitle">
+            <a href="#">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>-->
+        <h1 class="titleSnake">DAOS les petites étoiles du web</h1>
 
+        <!-- </a>
+      </div> -->
+    </div>
+
+    <section>
+{#{{ form(form) }}#}
 </section>
-<section class="articles">
 
-    {% for article in articles %}
-        <article>
-            <h2>{{ article.title }}</h2>
-            <div class="metadata">Ecrit le {{ article.createdAt | date('d/m/Y') }} à {{ article.createdAt | date('H:i') }} dans la categorie sport
-            </div>
-            <div class="content">
-                <img src="{{ article.image }}" alt="">
-                {{ article.content | raw }}
-                <a href="{{ path('blog_show', {'id': article.id}) }}" class="btn btn-primary">Lire la suite</a>
-            </div>
-        </article>
-    {% endfor %}
+    <!-- <div class="containerTitle">
+            <h1 data-splitting class="headline headline--twirl">twirling</h1>
+    </div> -->
 
-</section>
+    <section>
+
+        <div class="container">
+            <h2 class="text-success">Nos Statistiques</h2><p class="text-secondary">Bienvenue !!! Nous sommes le <?php echo date('d/m/Y h:i:s'); ?>{{ "now"|date("m/d/Y") }}.</p>
+            <div><p class="text-success">Météo :<span class="text-white"> aujourd'hui il fait 10°</span></p></div>
+            <div class="text-dark">
+                <div>
+                    <th>Nombre d'abonnés :
+                    <td>
+                            {% set counter = 0 %}
+                            {% set counterNbr = 0 %}
+                        {% if user is defined %}
+                            {% for user in users %}
+                                {% set counterNbr = counterNbr + 1 %}
+                            {% endfor %}
+                        {% endif %}
+                            {{ counterNbr }}
+
+                    </td>
+                    </th>
+                </div>
+                <div>
+                    <th>Nombre de connectés :
+                    <td>
+                            {% set counter = 0 %}
+                            {% set counterNbr = 0 %}
+                        {% if user is defined %}
+                            {% for user in users %}
+                                {% set counterNbr = counterNbr + 1 %}
+                            {% endfor %}
+                        {% endif %}
+                            {{ counterNbr }}
+
+                    </td>
+                    </th>
+                </div>
+                <div>
+                    <th>Nombre de commentaires :
+                    <td>
+                            {% set counter = 0 %}
+                            {% set counterNbr = 0 %}
+                        {% if comment is defined %}
+                            {% for comment in comments %}
+                                {% set counterNbr = counterNbr + 1 %}
+                            {% endfor %}
+                        {% endif %}
+                            {{ counterNbr }}
+
+                    </td>
+                    </th>
+                </div>
+                <div>
+                    <th>Nombre de likes :
+                    <td>
+                            {% set counter = 0 %}
+                            {% set counterNbr = 0 %}
+                        {% if postlike is defined %}
+                            {% for postlike in postlikes %}
+                                {% set counterNbr = counterNbr + 1 %}
+                            {% endfor %}
+                        {% endif %}
+                            {{ counterNbr }}
+
+                    </td>
+                    </th>
+                </div>
+                <div>
+                    <th>Nombre de produits disponibles :
+                    <td>
+                            {% set counter = 0 %}
+                            {% set counterNbr = 0 %}
+                        {% if product is defined %}
+                            {% for product in products %}
+                                {% set counterNbr = counterNbr + 1 %}
+                            {% endfor %}
+                        {% endif %}
+                            {{ counterNbr }}
+
+                    </td>
+                    </th>
+                </div>
+                <div>
+                    <th>Nombre de d'articles :
+                    <td>
+
+                            {% set counter = 0 %}
+                            {% set counterNbr = 0 %}
+                        {% if product is defined %}
+                            {% for product in products %}
+                                {% set counterNbr = counterNbr + 1 %}
+                            {% endfor %}
+                        {% endif %}
+                            {{ counterNbr }}
+
+                    </td>
+                    </th>
+                </div>
+            </div>
+            <div class="articles">
+                {% if article is defined %}
+                    {% for article in articles %}
+                        <article>
+                            <h2>{{ article.title }}</h2>
+                            <div class="metadata">Ecrit le {{ article.createdAt | date('d/m/Y') }} à {{ article.createdAt | date('H:i') }} dans la categorie sport
+                            </div>
+                            <div class="content">
+                                <img src="{{ article.image }}" alt="">
+                                {{ article.content | raw }}
+                                <a href="{{ path('blog_show', {'id': article.id}) }}" class="btn btn-primary">Lire la suite</a>
+                            </div>
+                        </article>
+                    {% endfor %}
+                {% else %}
+                    <div class="text-danger">Il n'y a pas d'articles disponibles.</div>
+                {% endif %}
+
+            </div>
+            <div class="row flex">
+                {% if product is defined %}
+                    {% for product in products %}
+                        <div class="col-lg-3 col-md-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+
+                                        <!-- Route et action avec slugify -->
+                                        <!-- twig se charge de convertir le getter et de l'utiliser -->
+                                        <!-- méthode path, création du chemin avec un paramètre l'id (JSON) -->
+                                        <a href="#">{{ product.name }} &lowast;</a>
+                                        <p class="click" style="font-size:10px;"> click here to see more ! &uArr;</p>
+                                    </h5>
+                                    <p class="card-text">ref. : {{ product.ref }} ,<br>Image : {{ product.media }} ,<br> quantitée disponible :({{ product.qte }}).</p>
+                                    <div class="text-primary" style="font-weight: bold;font-size:2rem;">{{ product.description }} </div>
+                                    <div class="text-primary" style="font-weight: bold;font-size:2rem;">{{ product.price }} €</div>
+                                    <!-- sans la function formattedPrice
+                            <div class="text-primary" style="front-weight: bold;font-size:2rem;"> product.Price €</div> -->
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="jumbotron text-center">
+            <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <h3>Transaction</h3>
+                        <p>Gérez la vente de votre portefeuille de propriétés, terrains, les commerces, bureaux et propriétés de prestige</p>
+                        <p><a href="#" class="button">En savoir plus</a></p>
+                    </div>
+                    <div class="carousel-item">
+                        <h3>Location saisonnière</h3>
+                        <p>Avec notre calendrier gérez vos tarifs par jour/semaine/mois et saison ainsi que vos options et réservations</p>
+                        <p><a href="#" class="button">En savoir plus</a></p>
+                    </div>
+                    <div class="carousel-item">
+                        <h3>Programme neuf</h3>
+                        <p>Un module dédié aux biens neufs permet de gérer votre bien ainsi que les lots qui le composent</p>
+                        <p><a href="#" class="button">En savoir plus</a></p>
+                    </div>
+                    <div class="carousel-item">
+                        <h3>Commerces &amp; bureaux</h3>
+                        <p>Notre outil vous permet de détailler les activités et résultats des commerces et toutes les prestations spécifiques pour l'immobilier d'entreprise</p>
+                        <p><a href="#" class="button">En savoir plus</a></p>
+                    </div>
+                    <div class="carousel-item">
+                        <h3>Viager</h3>
+                        <p>Vous pouvez gérer les spécificités d'une vente en viager et en nue propriété avec le bouquet, la rente ainsi que l'age des occupants</p>
+                        <p><a href="#" class="button">En savoir plus</a></p>
+                    </div>
+                </div>
+                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <div class="skills-header">
+                <h3>Our Skills</h3>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate obcaecati voluptates repudiandae quis neque nisi aspernatur nulla dolor nemo, officiis est, odio ab eveniet magnam repellat, eos ratione explicabo quisquam?
+                </p>
+            </div>
+            <div class="skills-content">
+                <div>Actu</div>
+                <div>Techno</div>
+                <div>IA</div>
+                <div>Fun</div>
+            </div>
+        </div>
+    </section>
 {% endblock %}
