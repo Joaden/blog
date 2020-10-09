@@ -5,8 +5,9 @@
         <title>{% block title %}Welcome!{% endblock %}</title>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
         <link rel="stylesheet" href="https://bootswatch.com/4/superhero/bootstrap.min.css">
-        <!-- <link rel="stylesheet" href="assets/css/bootstrap.css"> -->
+        {#<!-- <link rel="stylesheet" href="assets/css/bootstrap.css"> -->#}
         <link rel="stylesheet" href="../public/css/mycss.css">
+        <link rel="stylesheet" href="../public/css/solar/bootstrap.min.css">
         <!-- <link rel="stylesheet" href="/css/mycss.css"> -->
 
 
@@ -104,13 +105,17 @@
     {% if app.user %}
     <div class="container">
     <h3>Vous êtes bien connecté!</h3>
-        {% block body %}{% endblock %}
-    </div>
+
     {% else %}
+        </div>
     <div class="container">
         <h3>Vous n'etes pas connecté!</h3>
     </div>
     {% endif %}
+
+    {% block body %}
+
+    {% endblock %}
 
     {% block footer %}
         
