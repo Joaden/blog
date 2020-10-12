@@ -9,13 +9,13 @@
 namespace App\MessageHandler;
 
 
-use App\Message\OrderConfirmationEmail;
+use App\Message\OrderConfirmationEmails;
 use Symfony\Component\Messenger\Handler\MessageHandlerInterface;
 
 class OrderConfirmationEmailHandler implements MessageHandlerInterface
 {
 
-    public function __invoke(OrderConfirmationEmail $orderConfirmationEmail)
+    public function __invoke(OrderConfirmationEmails $orderConfirmationEmails)
     {
         // Query order / custome details from db
 

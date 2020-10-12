@@ -12,7 +12,7 @@
 
 
 
- class OrderConfirmationEmail
+ class OrderConfirmationEmails
  {
 
 
